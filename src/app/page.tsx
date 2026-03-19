@@ -1,14 +1,33 @@
 "use client";
 
+import { useState } from "react";
+import HeroSection from "@/components/hero/HeroSection";
+import type { AppState } from "@/types";
+
 export default function Home() {
+  const [appState, setAppState] = useState<AppState>("idle");
+
+  const handleSubmit = (taskName: string, manualMinutes: number) => {
+    console.log("Submitted:", { taskName, manualMinutes });
+    setAppState("calculating");
+  };
+
   return (
-    <main className="min-h-screen bg-background flex items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold text-foreground mb-4 font-mono">
-          ProcrastinCalc
-        </h1>
-        <p className="text-muted text-lg">Phase 1 — Design system loaded.</p>
-      </div>
+    <main className="min-h-screen bg-background">
+      {appState === "idle" && (
+        <HeroSection
+          onSubmit={handleSubmit}
+          isDisabled={appState !== "idle"}
+        />
+      )}
+
+      {appState === "calculating" && (
+        <div className="min-h-screen flex items-center justify-center">
+          <p className="text-neon-green font-mono text-xl cursor-blink">
+            Processing
+          </p>
+        </div>
+      )}
     </main>
   );
 }
