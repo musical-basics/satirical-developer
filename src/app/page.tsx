@@ -3,13 +3,14 @@
 import { useState } from "react";
 import HeroSection from "@/components/hero/HeroSection";
 import LoadingSection from "@/components/terminal/LoadingSection";
+import ResultsDashboard from "@/components/results/ResultsDashboard";
 import type { AppState, ROIResponse } from "@/types";
 import { useCalculateROI } from "@/hooks/useCalculateROI";
 
 export default function Home() {
   const [appState, setAppState] = useState<AppState>("idle");
   const [currentTask, setCurrentTask] = useState("");
-  const [, setResultData] = useState<ROIResponse | null>(null);
+  const [resultData, setResultData] = useState<ROIResponse | null>(null);
   const { calculate } = useCalculateROI();
 
   const handleSubmit = async (taskName: string, manualMinutes: number) => {
@@ -26,6 +27,12 @@ export default function Home() {
     }
   };
 
+  const handleReset = () => {
+    setAppState("idle");
+    setResultData(null);
+    setCurrentTask("");
+  };
+
   return (
     <main className="min-h-screen bg-background">
       {appState === "idle" && (
@@ -36,12 +43,8 @@ export default function Home() {
         <LoadingSection taskName={currentTask} />
       )}
 
-      {appState === "results" && (
-        <div className="min-h-screen flex items-center justify-center">
-          <p className="text-neon-green font-mono text-xl">
-            Results ready! (Phase 5 will build this UI)
-          </p>
-        </div>
+      {appState === "results" && resultData?.data && (
+        <ResultsDashboard data={resultData.data} onReset={handleReset} />
       )}
     </main>
   );
