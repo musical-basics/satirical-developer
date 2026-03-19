@@ -1,26 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Core palette from PRD */
+  --color-background: #050505;
+  --color-foreground: #E0E0E0;
+  --color-neon-green: #00FF00;
+  --color-blood-red: #FF0000;
+  --color-terminal-gray: #1A1A1A;
+  --color-terminal-border: #333333;
+  --color-muted: #888888;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Font */
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+
+  /* Animations */
+  --animate-blink: blink 1s step-end infinite;
+  --animate-fade-in: fadeIn 0.5s ease-in-out forwards;
+  --animate-slide-up: slideUp 0.6s ease-out forwards;
+  --animate-pulse-glow: pulseGlow 2s ease-in-out infinite;
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 5px rgba(0, 255, 0, 0.3); }
+    50% { box-shadow: 0 0 20px rgba(0, 255, 0, 0.6); }
   }
 }
 
+/* ===== Base Styles ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #050505;
+  color: #E0E0E0;
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar for terminal vibe */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
+/* ===== Reusable Component Classes ===== */
+
+/* Terminal-style container */
+.terminal-box {
+  background-color: var(--color-terminal-gray);
+  border: 1px solid var(--color-terminal-border);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+}
+
+/* Glowing green button style */
+.btn-primary {
+  background-color: var(--color-neon-green);
+  color: var(--color-background);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  padding: 1rem 2rem;
+  border-radius: 0.375rem;
+  font-size: 1.125rem;
+  transition: all 0.3s;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Red accent text */
+.text-danger {
+  color: var(--color-blood-red);
+  font-weight: 700;
+}
+
+/* Blinking cursor for terminal effect */
+.cursor-blink::after {
+  content: "█";
+  color: var(--color-neon-green);
+  margin-left: 0.25rem;
+  animation: blink 1s step-end infinite;
 }
