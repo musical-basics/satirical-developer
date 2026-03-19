@@ -79,7 +79,7 @@ export default function ResultsDashboard({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2 }}
-          className="text-center space-y-4"
+          className="flex flex-col items-center gap-4"
         >
           <button
             id="close-laptop-button"
@@ -94,7 +94,7 @@ export default function ResultsDashboard({
                        px-10 py-5 rounded-md text-xl
                        hover:shadow-[0_0_30px_rgba(255,0,0,0.4)] 
                        transition-all duration-300
-                       flex items-center gap-3 mx-auto cursor-pointer border-none"
+                       inline-flex items-center gap-3 cursor-pointer border-none"
           >
             <XCircle className="w-6 h-6" />
             Close Laptop and Go Do It.
