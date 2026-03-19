@@ -22,12 +22,12 @@ export default function InputForm({ onSubmit, isDisabled }: InputFormProps) {
   const isValid = taskName.trim().length > 0 && parseInt(manualMinutes, 10) > 0;
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-2xl mx-auto space-y-10">
+    <form onSubmit={handleSubmit} className="w-full max-w-2xl mx-auto">
       {/* Task Name Input */}
-      <div className="space-y-3">
+      <div className="mb-4">
         <label
           htmlFor="task-name-input"
-          className="block text-sm text-muted uppercase tracking-widest"
+          className="block text-sm text-muted uppercase tracking-widest mb-3"
         >
           {">"} What simple task are you actively avoiding?
         </label>
@@ -39,7 +39,7 @@ export default function InputForm({ onSubmit, isDisabled }: InputFormProps) {
           disabled={isDisabled}
           placeholder="Packing my suitcase..."
           className="w-full bg-terminal-gray border border-terminal-border rounded-md 
-                     px-4 py-3 text-foreground font-mono text-lg
+                     px-5 py-4 text-foreground font-mono text-lg
                      placeholder:text-muted/50
                      focus:outline-none focus:border-neon-green focus:shadow-[0_0_10px_rgba(0,255,0,0.2)]
                      transition-all duration-300
@@ -48,10 +48,10 @@ export default function InputForm({ onSubmit, isDisabled }: InputFormProps) {
       </div>
 
       {/* Manual Minutes Input */}
-      <div className="space-y-3">
+      <div className="mb-8">
         <label
           htmlFor="manual-minutes-input"
-          className="block text-sm text-muted uppercase tracking-widest"
+          className="block text-sm text-muted uppercase tracking-widest mb-3"
         >
           {">"} How many minutes would it take to just do it?
         </label>
@@ -65,7 +65,7 @@ export default function InputForm({ onSubmit, isDisabled }: InputFormProps) {
           min="1"
           max="999"
           className="w-full bg-terminal-gray border border-terminal-border rounded-md 
-                     px-4 py-3 text-foreground font-mono text-lg
+                     px-5 py-4 text-foreground font-mono text-lg
                      placeholder:text-muted/50
                      focus:outline-none focus:border-neon-green focus:shadow-[0_0_10px_rgba(0,255,0,0.2)]
                      transition-all duration-300
