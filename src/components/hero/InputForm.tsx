@@ -22,9 +22,9 @@ export default function InputForm({ onSubmit, isDisabled }: InputFormProps) {
   const isValid = taskName.trim().length > 0 && parseInt(manualMinutes, 10) > 0;
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-2xl mx-auto space-y-6">
+    <form onSubmit={handleSubmit} className="w-full max-w-2xl mx-auto space-y-10">
       {/* Task Name Input */}
-      <div className="space-y-2">
+      <div className="space-y-3">
         <label
           htmlFor="task-name-input"
           className="block text-sm text-muted uppercase tracking-widest"
@@ -48,7 +48,7 @@ export default function InputForm({ onSubmit, isDisabled }: InputFormProps) {
       </div>
 
       {/* Manual Minutes Input */}
-      <div className="space-y-2">
+      <div className="space-y-3">
         <label
           htmlFor="manual-minutes-input"
           className="block text-sm text-muted uppercase tracking-widest"
