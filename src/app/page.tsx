@@ -9,6 +9,7 @@ import ErrorDisplay from "@/components/ui/ErrorDisplay";
 import type { AppState, ROIResponse } from "@/types";
 import { useCalculateROI } from "@/hooks/useCalculateROI";
 import { withMinDuration } from "@/lib/utils";
+import { useKeyboardShortcuts } from "@/hooks/useKeyboardShortcuts";
 
 const MIN_LOADING_MS = 3500;
 
@@ -74,6 +75,10 @@ export default function Home() {
       handleReset();
     }
   }, [currentTask, currentMinutes, handleSubmit, handleReset]);
+
+  useKeyboardShortcuts({
+    onEscape: handleReset,
+  });
 
   return (
     <main className="min-h-screen bg-background">
